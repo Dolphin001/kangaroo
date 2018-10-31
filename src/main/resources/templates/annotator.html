@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文章标题</title>
+	<script src="http://101.132.102.11/js/jquery/1.7/jquery.min.js"></script>
+	<!--<script src="http://101.132.102.11/js/annotator/v1.1.0/annotator-full.min.js"></script>-->
+	<script src="http://localhost/res/annotator-full.min.js"></script>
+	<link rel="stylesheet" href="http://101.132.102.11/css/annotator/v1.1.0/annotator.min.css">
+</head>
+<body>
+<section id="content">
+	Add some content here
+</section>
+
+</body>
+<script>
+    $(function(){
+        var current_page_id="a7179a87-c443-41c4-9985-3c7a8cf937b6";
+        var annotation=$('#content').annotator();
+        annotation.annotator('addPlugin','Store',{
+            prefix:'http://localhost/annotation',
+            loadFromSearch:{
+                pageId:current_page_id
+            },
+            annotationData: {
+                pageId:current_page_id
+            },urls:{
+                create:'/store',
+                update:'/update/:id',
+                destory:'/delete/:id',
+                search:'/search'
+            }
+        })
+    });
+</script>
+</html>

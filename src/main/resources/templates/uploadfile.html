@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
+</head>
+<body>
+	<h1>Spring MVC file upload example</h1>
+
+	<form method="POST" action="/upload/singleFile" enctype="multipart/form-data">
+		<input type="file" name="file" /><br/>
+		<input type="submit" value="Submit" />
+	</form>
+
+
+	<h1>Spring MVC multi files upload example</h1>
+
+	<form method="POST" action="/upload/uploadMulti" enctype="multipart/form-data">
+		<input type="file" name="files" /><br/>
+		<input type="file" name="files" /><br/>
+		<input type="file" name="files" /><br/>
+		<input type="submit" value="Submit" />
+	</form>
+</body>
+<script type="text/javascript" src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+<script type="text/javascript">
+$(function($){
+	//upload file to service
+	var upload_url='/upload/img';
+	$('#submit').click(function(){
+		var shopImg = $('#shop-img')[0].files[0];
+		console.log('shopImg');
+		console.log(shopImg);
+
+		var formData = new FormData();
+		formData.append("shopImg",shopImg);
+		/* $.ajax({
+			url : upload_url,
+		}) */
+		return false;
+		$.post(upload_url,{shopImg:shopImg},function(data){
+           console.log('data');
+           console.log(data);
+		});
+	});
+});
+</script>
+</html>

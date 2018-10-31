@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>文章标题</title>
+	<script src="http://101.132.102.11/js/jquery/1.7/jquery.min.js"></script>
+	<!--<script src="http://101.132.102.11/js/annotator/v1.1.0/annotator-full.min.js"></script>-->
+	<script src="http://localhost/res/annotator-full.min.js"></script>
+	<link rel="stylesheet" href="http://101.132.102.11/css/annotator/v1.1.0/annotator.min.css">
+</head>
+<body>
+	<section id="content">
+		Add some content here
+	</section>
+
+</body>
+<script>
+    $(document).ready(function() {
+        var current_page_id=90;
+        // Call Annotator JS
+        var content = $('#content').annotator();
+        content.annotator('addPlugin', 'Store', {
+            prefix: 'http://localhost/annotation',
+            annotationData: {
+                'page':90
+            },
+            loadFromSearch: {
+				'page':20
+//                'uri': 'http://localhost:4000/example/page/to/annotate'
+            },
+            urls: {
+                // These are the default URLs.
+                create:  '/annotations',
+                update:  '/annotations/'+current_page_id,
+                destroy: '/annotations/'+current_page_id,
+                search:  '/search'
+            },
+            showViewPermissionsCheckbox: true,
+            showEditPermissionsCheckbox: true
+        });
+    });
+</script>
+</html>

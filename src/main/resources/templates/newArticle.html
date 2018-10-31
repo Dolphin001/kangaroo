@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta charset="utf-8">
+    <script src="http://101.132.102.11/js/jquery/1.7/jquery.min.js"></script>
+    <script src="http://101.132.102.11/js/annotator/v1.1.0/annotator-full.min.js"></script>
+    <link rel="stylesheet" href="http://101.132.102.11/css/annotator/v1.1.0/annotator.min.css">
+
+</head>
+<body>
+    <section id="content">
+        ${articles.articleContent}
+    </section>
+
+</body>
+<script type="text/javascript">
+    jQuery(function ($) {
+        //Adding more plugins
+        $('#content').annotator()
+            .annotator('addPlugin', 'Tags');
+    });
+</script>
+</html>

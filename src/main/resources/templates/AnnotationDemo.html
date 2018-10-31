@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Annotation Demo</title>
+	<meta charset="utf-8">
+	<script src="http://101.132.102.11/js/jquery/1.7/jquery.min.js"></script>
+	<script src="http://101.132.102.11/js/annotator/v1.1.0/annotator-full.min.js"></script>
+	<link rel="stylesheet" href="http://101.132.102.11/css/annotator/v1.1.0/annotator.min.css">
+	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
+	<script src="http://assets.annotateit.org/annotator/v1.1.0/annotator-full.min.js"></script>
+	<link rel="stylesheet" href="http://assets.annotateit.org/annotator/v1.1.0/annotator.min.css">-->
+</head>
+<body>
+<a id="save" href="http://localhost/dreamtale/annotation/save">Save</a> <a href="http://localhost/dreamtale/annotation/findArticleById/" target="blank" id="search">seacrch</a>
+<section id="content">
+	Among the many things that helped define the 2016 U.S. presidential election, one slogan still rings strong: “Make America Great Again.” The Donald Trump campaign set out to regain the status that the United States had supposedly lost because of the Obama administration. How did Trump fare in making America great again? In the eyes of the world, we certainly are going in the wrong direction.
+
+	RELATED CONTENT
+	WASHINGTON, DC - DECEMBER 4: The Washington Monument is seen as President Donald Trump talks to reporters and members of the media as he walks to board Marine One on the South Lawn of the White House in Washington, DC on Monday, Dec. 04, 2017. (Photo by Jabin Botsford/The Washington Post via Getty Images)
+	U.S. Slipping in Leadership, Relevance, According to Best Countries Survey
+	Say what you will about President Trump, one thing was true: At the end of 2015, there was room for America to be better perceived. To be clear, the U.S. is and always has been a great country, but there are some areas in which it could have improved vis-à-vis the rest of the world.
+
+	According to the U.S. News, WPP, and Wharton Best Countries study, which ranks 80 countries by polling more than 21,000 people around the world – the U.S. was ranked the fourth best country in the world in 2016. This ranking is based on perceptions – how the world views the U.S. relative to other countries based on 75 metrics weighted by their correlation with gross domestic product per capita. In the 2016 survey, the U.S. was ranked only the 13th most economically stable country in the world and ranked 33rd in terms of how much people wanted to invest in it. At that time, it was ranked ninth for gender equality, 20th for open travel policies, and 16th in environmental policies.
+
+	The vitriolic presidential campaign of 2016 further hurt the country’s reputation. A second wave of our survey (the 2017 rankings) taken immediately after the election showed that the election and its result affected not just internal American perceptions, but also views from abroad. Its political stability ranking dropped from 11th to 21st and its trustworthiness ranking dropped from 17th to 23rd.
+
+
+	So when President Trump took over the country at the start of 2017, he had a tall mountain to climb. The 2018 ranking, taken at the end of the past year, gives us insight into whether Trump has truly made America great again. The result is most disappointing. The U.S. has fallen from its No. 4 position in 2016 to now being No. 8 in the world.
+</section>
+</body>
+<script type="text/javascript">
+    jQuery(function ($) {
+		var searchUrl=$('#search').attr('href');
+		//Adding more plugins
+        $('#content').annotator()
+            .annotator('addPlugin', 'Tags');
+
+//        var content = $('#content').annotator();
+//        content.annotator('addPlugin', 'Store', {
+//            // The endpoint of the store on your server.
+//            prefix: '/store/endpoint',
+//
+//            // Attach the uri of the current page to all annotations to allow search.
+//            annotationData: {
+//                'uri': 'http://this/document/only'
+//            },
+//
+//            // This will perform a "search" action when the plugin loads. Will
+//            // request the last 20 annotations for the current url.
+//            // eg. /store/endpoint/search?limit=20&uri=http://this/document/only
+//            loadFromSearch: {
+//                'limit': 20,
+//                'uri': 'http://this/document/only'
+//            }
+//        });
+
+//        $('#content').annotator('addPlugin', 'Store', {
+//            urls: {
+//                // These are the default URLs.
+//                create:  '/annotator',
+//                update:  '/annotator/:id',
+//                destroy: '/annotator/:id',
+//                search:  '/search'
+//            }
+//        });
+        /**
+		 * Save article
+		 * */
+        $('#save').click(function(){
+            //var content=$('#content').html();
+            var content = $('#content').annotator();
+            console.log(typeof content);
+            console.log();
+            var annotationUrl=$(this).attr('href');
+
+
+            $.get(annotationUrl,{'articleContent':content.html()},function(data){
+                data=jQuery.parseJSON(data);
+                var articleId=data.data;
+                $('#save').data('id',articleId);
+                console.log(typeof articleId);
+                console.log($('#save').data('id'));
+			});
+            console.log(content.html());
+            return false;
+
+        });
+        /**
+		 * Search article
+		 * */
+        $('#search').click(function(){
+            console.log(searchUrl+ $('#save').data('id'));
+            $(this).attr('href',searchUrl+ $('#save').data('id'));
+		});
+    });
+</script>
+<!--<script type="text/javascript">
+    var content = $('#content').annotator();
+    content.annotator('addPlugin', 'Store', {
+        // The endpoint of the store on your server.
+        prefix: '/store/endpoint',
+
+        // Attach the uri of the current page to all annotations to allow search.
+        annotationData: {
+            'uri': 'http://this/document/only'
+        },
+
+        // This will perform a "search" action when the plugin loads. Will
+        // request the last 20 annotations for the current url.
+        // eg. /store/endpoint/search?limit=20&uri=http://this/document/only
+        loadFromSearch: {
+            'limit': 20,
+            'uri': 'http://this/document/only'
+        }
+    });
+</script>-->
+</html>
