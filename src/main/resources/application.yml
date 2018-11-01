@@ -7,8 +7,9 @@ spring:
     username: root
     password: bobo201308@
   jpa:
-    database-platform: org.hibernate.dialect.MySQLDialect
-#    hibernate:
-#      ddl-auto: create
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+    hibernate:
+      ddl-auto: create
+    show-sql: true
 #spring.jpa.database-platform=
 
