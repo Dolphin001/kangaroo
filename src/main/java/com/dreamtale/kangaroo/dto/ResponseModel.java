@@ -1,6 +1,5 @@
 package com.dreamtale.kangaroo.dto;
 
-import  com.dreamtale.kangaroo.model.Page;
 import java.io.Serializable;
 
 /**
@@ -17,7 +16,7 @@ public class ResponseModel<T> implements Serializable{
 
     private T data;
 
-    private Page page;
+    //private Page page;
 
     public ResponseModel(int code) {
         this.code = code;
@@ -30,10 +29,7 @@ public class ResponseModel<T> implements Serializable{
         }
     }
 
-    public ResponseModel(int code, Page page) {
-        this.code = code;
-        this.page = page;
-    }
+
 
     public ResponseModel(int code, String message) {
         this.code = code;
@@ -82,13 +78,5 @@ public class ResponseModel<T> implements Serializable{
 
     public void setData(T data) {
         this.data = data;
-    }
-
-    public Page getPage() {
-        return page;
-    }
-
-    public void setPage(Page page) {
-        this.page = page;
     }
 }

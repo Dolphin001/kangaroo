@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface AnnotatorRepository extends JpaRepository<Annotator,String> {
 
-    Optional<List<Annotator>> findListById(String uuid);
 }

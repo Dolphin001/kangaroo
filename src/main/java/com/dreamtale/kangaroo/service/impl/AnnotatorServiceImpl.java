@@ -51,7 +51,7 @@ public class AnnotatorServiceImpl implements IAnnotatorService {
 	@Override
 	public List<Annotator> selectByUUID(String uuid) {
 
-		return annotatorRepository.findListById(uuid).get();
+		return null;//annotatorRepository.findListById(uuid).get();
 	}
 
 	@Override

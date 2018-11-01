@@ -1,8 +1,14 @@
 server:
   port: 8099
 spring:
-    datasource:
-      driver-class-name: com.mysql.jdbc.Driver
-      url: jdbc:mysql://47.75.243.232:3360/library?useUnicode=true&characterEncoding=utf8
-      username: root
-      password: bobo201308@
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://47.75.243.232:3306/annotator?useUnicode=true&characterEncoding=utf8
+    username: root
+    password: bobo201308@
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+#    hibernate:
+#      ddl-auto: create
+#spring.jpa.database-platform=
+

@@ -7,5 +7,4 @@ import java.util.List;
 
 public interface AnnotatorRangesrepository extends JpaRepository<AnnotatorRanges,String> {
 
-    List<AnnotatorRanges> saveAll(List<AnnotatorRanges> annotatorRanges);
 }
