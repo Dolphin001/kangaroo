@@ -1,10 +1,10 @@
 package com.dreamtale.kangaroo.service.impl;
 
-import com.dreamtale.kangaroo.dto.ResponseModel;
+import com.dreamtale.kangaroo.dto.Result;
 import com.dreamtale.kangaroo.model.Annotator;
 import com.dreamtale.kangaroo.model.AnnotatorRanges;
-import com.dreamtale.kangaroo.response.AnnotatorRangesrepository;
-import com.dreamtale.kangaroo.response.AnnotatorRepository;
+import com.dreamtale.kangaroo.repository.AnnotatorRangesRepository;
+import com.dreamtale.kangaroo.repository.AnnotatorRepository;
 import com.dreamtale.kangaroo.service.IAnnotatorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,15 +14,15 @@ import java.util.List;
 @Service
 public class AnnotatorServiceImpl implements IAnnotatorService {
 	@Autowired
-	private AnnotatorRangesrepository annotatorRangesrepository;
+	private AnnotatorRangesRepository annotatorRangesrepository;
 
 	@Autowired
 	private AnnotatorRepository annotatorRepository;
 
 	@Override
-	public ResponseModel save(Annotator annotator) {
+	public Result save(Annotator annotator) {
 		//annotatorDao.save(articles);
-		return new ResponseModel(0,"success",0);
+		return null;
 	}
 
 	@Override

@@ -1,7 +1,7 @@
 package com.dreamtale.kangaroo.service;
 
 
-import com.dreamtale.kangaroo.dto.ResponseModel;
+import com.dreamtale.kangaroo.dto.Result;
 import com.dreamtale.kangaroo.model.Annotator;
 import com.dreamtale.kangaroo.model.AnnotatorRanges;
 
@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface IAnnotatorService {
 
-	ResponseModel save(Annotator annotator);
+	Result save(Annotator annotator);
 
 	Annotator selectAnnotationArticleById(Integer articleId);
 

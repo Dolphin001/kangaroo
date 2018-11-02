@@ -1,4 +1,4 @@
-package com.dreamtale.kangaroo.response;
+package com.dreamtale.kangaroo.repository;
 
 import com.dreamtale.kangaroo.model.Test;
 import org.springframework.data.jpa.repository.JpaRepository;

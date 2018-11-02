@@ -24,8 +24,7 @@ public class AnnotatorAPIController extends BaseController{
 	@Resource
 	private IAnnotatorService annotatorService;
 
-	@ResponseBody
-	@RequestMapping(value = "/")
+	@GetMapping("/")
 	public void root() throws IOException {
 		BufferedReader br=new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String json="";
@@ -43,7 +42,7 @@ public class AnnotatorAPIController extends BaseController{
 			jsonData.put("author","Moxiaoxuan");
 
 			jsonArray.add(jsonData);
-			//writer=response.getWriter();
+			//writer=repository.getWriter();
 
 			writer.print(jsonArray);
 		}catch (Exception e){
@@ -56,8 +55,7 @@ public class AnnotatorAPIController extends BaseController{
 	}
 
 
-	@ResponseBody
-	@RequestMapping(value = "/annotations")
+	@GetMapping("/annotations")
 	public void index()throws IOException {
 
 		Map<String,Object> responseMap=new HashMap<String,Object>();
@@ -83,8 +81,7 @@ public class AnnotatorAPIController extends BaseController{
 		//return JSONObject.toJSON(responseMap);
 	}
 
-	@ResponseBody
-	@RequestMapping(value = "/annotations",method = RequestMethod.POST)
+	@PostMapping("/annotations")
 	public void indexPost() throws IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(request.getInputStream()));
 		String json = "";

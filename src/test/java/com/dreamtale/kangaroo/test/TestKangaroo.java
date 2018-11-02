@@ -2,7 +2,7 @@ package com.dreamtale.kangaroo.test;
 
 import com.dreamtale.kangaroo.KangarooApplicationTests;
 import com.dreamtale.kangaroo.model.Test;
-import com.dreamtale.kangaroo.response.TestRepository;
+import com.dreamtale.kangaroo.repository.TestRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.UUID;

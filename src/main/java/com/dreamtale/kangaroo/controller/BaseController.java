@@ -1,8 +1,6 @@
 package com.dreamtale.kangaroo.controller;
 
-import com.dreamtale.kangaroo.exception.ParamExceptiom;
-import org.apache.tomcat.util.bcel.Const;
-import org.springframework.ui.Model;
+import com.dreamtale.kangaroo.exception.ParamException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -13,7 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 /**
- * Controller基类
+ * BaseController
  * Created by zchuanzhao on 2016/11/26.
  */
 public class BaseController {
@@ -36,36 +34,36 @@ public class BaseController {
         return value;
     }
 
-    protected int getParamToInt(String name) throws ParamExceptiom {
+    protected int getParamToInt(String name) throws ParamException {
         String value = getParam(name);
         try {
             return Integer.parseInt(value);
         }catch (Exception e){
-            throw new ParamExceptiom("参数异常");
+            throw new ParamException("参数异常");
         }
     }
 
     protected int getParamToInt(String name, int defaultValue){
         try {
             return getParamToInt(name);
-        } catch (ParamExceptiom paramExceptiom) {
+        } catch (ParamException paramException) {
             return defaultValue;
         }
     }
 
-    protected double getParamToDouble(String name) throws ParamExceptiom {
+    protected double getParamToDouble(String name) throws ParamException {
         String value = getParam(name);
         try {
             return Double.parseDouble(value);
         }catch (Exception e){
-            throw new ParamExceptiom("参数异常");
+            throw new ParamException("参数异常");
         }
     }
 
     protected double getParamToInt(String name, double defaultValue){
         try {
             return getParamToDouble(name);
-        } catch (ParamExceptiom paramExceptiom) {
+        } catch (ParamException paramException) {
             return defaultValue;
         }
     }
