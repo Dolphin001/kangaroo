@@ -1,6 +1,9 @@
 server:
   port: 8099
 spring:
+  devtools:
+    restart:
+      enabled: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://47.75.243.232:3306/annotator?useUnicode=true&characterEncoding=utf8
@@ -9,7 +12,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     show-sql: true
 #spring.jpa.database-platform=
 

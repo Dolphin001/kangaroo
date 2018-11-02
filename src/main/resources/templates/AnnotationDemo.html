@@ -6,9 +6,6 @@
 	<script src="http://101.132.102.11/js/jquery/1.7/jquery.min.js"></script>
 	<script src="http://101.132.102.11/js/annotator/v1.1.0/annotator-full.min.js"></script>
 	<link rel="stylesheet" href="http://101.132.102.11/css/annotator/v1.1.0/annotator.min.css">
-	<!--<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.min.js"></script>
-	<script src="http://assets.annotateit.org/annotator/v1.1.0/annotator-full.min.js"></script>
-	<link rel="stylesheet" href="http://assets.annotateit.org/annotator/v1.1.0/annotator.min.css">-->
 </head>
 <body>
 <a id="save" href="http://localhost/dreamtale/annotation/save">Save</a> <a href="http://localhost/dreamtale/annotation/findArticleById/" target="blank" id="search">seacrch</a>
@@ -35,34 +32,6 @@
         $('#content').annotator()
             .annotator('addPlugin', 'Tags');
 
-//        var content = $('#content').annotator();
-//        content.annotator('addPlugin', 'Store', {
-//            // The endpoint of the store on your server.
-//            prefix: '/store/endpoint',
-//
-//            // Attach the uri of the current page to all annotations to allow search.
-//            annotationData: {
-//                'uri': 'http://this/document/only'
-//            },
-//
-//            // This will perform a "search" action when the plugin loads. Will
-//            // request the last 20 annotations for the current url.
-//            // eg. /store/endpoint/search?limit=20&uri=http://this/document/only
-//            loadFromSearch: {
-//                'limit': 20,
-//                'uri': 'http://this/document/only'
-//            }
-//        });
-
-//        $('#content').annotator('addPlugin', 'Store', {
-//            urls: {
-//                // These are the default URLs.
-//                create:  '/annotator',
-//                update:  '/annotator/:id',
-//                destroy: '/annotator/:id',
-//                search:  '/search'
-//            }
-//        });
         /**
 		 * Save article
 		 * */
