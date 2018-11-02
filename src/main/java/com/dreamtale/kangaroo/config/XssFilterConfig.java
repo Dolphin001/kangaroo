@@ -5,7 +5,6 @@ import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Component;
 
-import javax.servlet.annotation.WebFilter;
 
 import static javax.servlet.DispatcherType.REQUEST;
 
