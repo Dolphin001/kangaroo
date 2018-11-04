@@ -1,15 +1,20 @@
 package com.dreamtale.kangaroo.service.impl;
 
 import com.dreamtale.kangaroo.dto.Result;
+import com.dreamtale.kangaroo.enums.ResultEnum;
 import com.dreamtale.kangaroo.model.Annotator;
 import com.dreamtale.kangaroo.model.AnnotatorRanges;
 import com.dreamtale.kangaroo.repository.AnnotatorRangesRepository;
 import com.dreamtale.kangaroo.repository.AnnotatorRepository;
 import com.dreamtale.kangaroo.service.IAnnotatorService;
+import com.dreamtale.kangaroo.utils.WebUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class AnnotatorServiceImpl implements IAnnotatorService {
@@ -21,41 +26,42 @@ public class AnnotatorServiceImpl implements IAnnotatorService {
 
 	@Override
 	public Result save(Annotator annotator) {
-		//annotatorDao.save(articles);
-		return null;
+
+		List<AnnotatorRanges> rangesList = (List<AnnotatorRanges>) annotator.getRanges();
+		if( rangesList != null){
+			for(AnnotatorRanges ranges : rangesList){
+				ranges.setRangeId(WebUtils.genUUID());
+			}
+			Annotator ann = annotatorRepository.save(annotator);
+			if(ann != null){
+				Map<String,String> idMap = new HashMap<>();
+				idMap.put("id",annotator.getAnnotatorId());
+				return new Result(ResultEnum.INSERT_SUCCESS,idMap);
+			}else{
+				return new Result(ResultEnum.INSERT_DEFEAT);
+			}
+		}
+		return new Result(ResultEnum.ANNOTATOR_RANGES_ERROR);
 	}
 
 	@Override
-	public Annotator selectAnnotationArticleById(Integer id) {
-		//return annotatorDao.findById(id);
-		return  null;
+	public Result findAnnotationListByPageId(String pageId) {
+
+		//List<Annotator>
+		List<Annotator> annotatorList = annotatorRepository.findByPageId(pageId);
+
+		return new Result(ResultEnum.SEARCH_ANNOTATION,annotatorList);
 	}
 
 	@Override
-	public void delete(Integer articleId) {
-
+    @Transactional
+	public void deleteAnnotationByAnnotationId(String annotatorId) {
+        /**
+         * First delete the data of the detail table.
+         * */
+	    //annotatorRangesrepository.deleteByAnnotatorId(annotatorId);
+	    /**then delete the data of the annotator table*/
+	    annotatorRepository.deleteByAnnotatorId(annotatorId);
 	}
 
-	@Override
-	public int insert(Annotator annotator) {
-		//return annotatorDao.insert(annotator);
-		return 0;
-
-	}
-
-	@Override
-	public int update(Annotator annotator) {
-		return 0;
-	}
-
-	@Override
-	public List<Annotator> selectByUUID(String uuid) {
-
-		return null;//annotatorRepository.findListById(uuid).get();
-	}
-
-	@Override
-	public int insertAnnotatorRanges(List<AnnotatorRanges> annotatorRanges) {
-		return 0;
-	}
 }

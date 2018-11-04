@@ -5,4 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AnnotatorRangesRepository extends JpaRepository<AnnotatorRanges,String> {
 
+    void deleteByAnnotatorId(String annotatorId);
 }

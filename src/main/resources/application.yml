@@ -11,8 +11,12 @@ spring:
     password: bobo201308@
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
-    hibernate:
-      ddl-auto: update
+#    hibernate:
+#      ddl-auto: create
     show-sql: true
+  mvc:
+    static-path-pattern: /**
+  resources:
+    static-locations: classpath:/static/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 #spring.jpa.database-platform=
 

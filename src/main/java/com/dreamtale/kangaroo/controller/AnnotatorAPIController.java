@@ -3,9 +3,14 @@ package com.dreamtale.kangaroo.controller;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.dreamtale.kangaroo.dto.Result;
+import com.dreamtale.kangaroo.enums.ResultEnum;
 import com.dreamtale.kangaroo.model.Annotator;
+import com.dreamtale.kangaroo.model.AnnotatorRanges;
 import com.dreamtale.kangaroo.service.IAnnotatorService;
+import com.dreamtale.kangaroo.utils.WebUtils;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -151,38 +156,41 @@ public class AnnotatorAPIController extends BaseController{
 		*//*System.out.println(JSONObject.toJSON(responseMap));*//*
 		return JSONObject.toJSON(responseMap);
 	}*/
-	@ResponseBody
-	@RequestMapping(value = "/update/{pageId}",method = RequestMethod.PUT)
+	@PostMapping("/create")
+	public Result save( @RequestBody Annotator annotator) throws IOException {
+		//set id
+		if ( annotator != null){
+			annotator.setAnnotatorId(WebUtils.genUUID());
+			return annotatorService.save(annotator);
+		}
+		return new Result(ResultEnum.ANNOTATOR_RANGES_ERROR);
+	}
+
+	@PutMapping("/update/{pageId}")
 	public void update(@PathVariable String pageId){
 		System.out.println("update\t"+pageId);
 
 
 	}
-	@ResponseBody
-	@RequestMapping(value = "/delete/{id}",method = RequestMethod.DELETE)
-	public void delete(@PathVariable String id){
-		System.out.println("delete\t"+id);
+	@DeleteMapping("/delete")
+	public Result delete(@RequestBody Annotator annotator){
+		//deleteAnnotationByAn
+		//
+		if(annotator != null && annotator.getAnnotatorId() != null){
+
+			annotatorService.deleteAnnotationByAnnotationId(annotator.getAnnotatorId());
+		    return new Result(Result.SUCCESS);
+		}
+		return new Result(Result.ERROR);
 	}
 
 	@GetMapping("/search")
-	public Object search() throws IOException {
+	public Result search(@RequestParam String searchId) throws IOException {
+
 		//get articleId
-		String pageId=request.getParameter("pageId");
-
-		List<Annotator> annotator=annotatorService.selectByUUID(pageId);
-		Map<String,Object> responseMap=new HashMap<>();
-
-		if( annotator == null || annotator.size() == 0){
-			responseMap.put("total",0);
-		}else{
-			responseMap.put("total",annotator.size());
+		if( !StringUtils.isEmpty(searchId)){
+			return annotatorService.findAnnotationListByPageId(searchId);
 		}
-
-
-
-		responseMap.put("rows",annotator);
-		System.out.println(JSONObject.toJSON(responseMap));
-
-		return JSONObject.toJSON(responseMap);
+		return null;
 	}
 }

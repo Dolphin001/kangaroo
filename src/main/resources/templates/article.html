@@ -127,12 +127,20 @@
                 'pageId': 90
             },
             loadFromSearch: {
-                'pageId': 20
+                'searchId': 90
             },
             urls: {
-                create: '/annotations',
+                create: '/create',
+                update: '/update/:id',
+                destroy: '/delete/:id',
+                /* destroy: '/delete/' + current_page_id,
+*/
+                /*create: '/annotations',
                 update: '/annotations/' + current_page_id,
-                destroy: '/annotations/' + current_page_id,
+                destroy: '/annotations/' + current_page_id,*/
+
+
+
                 search: 'search?pageId=' + current_page_id
             },
             showViewPermissionsCheckbox: true,

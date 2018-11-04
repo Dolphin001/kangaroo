@@ -11,11 +11,8 @@ public class AnnotatorRanges implements Serializable {
 	@Id
 	private String rangeId;
 
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "annotator_id")
-	private Annotator annotator;
-
-	private String parentPageId;
+	//private String pageId;
+	private String annotatorId;
 
 	private String end;
 
@@ -24,6 +21,4 @@ public class AnnotatorRanges implements Serializable {
 	private int startOffset;
 
 	private int endOffset;
-
-
 }
