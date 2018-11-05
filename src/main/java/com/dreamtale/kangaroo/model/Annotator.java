@@ -25,5 +25,8 @@ public class Annotator  {
 
 	private String text;
 
+	@Transient
+	private Annotator rows;
+
 
 }

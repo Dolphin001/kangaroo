@@ -11,8 +11,8 @@ spring:
     password: root
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
-    hibernate:
-      ddl-auto: create
+#    hibernate:
+#      ddl-auto: create
     show-sql: true
   mvc:
     static-path-pattern: /**

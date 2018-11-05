@@ -25,6 +25,7 @@ public class AnnotatorServiceImpl implements IAnnotatorService {
 	private AnnotatorRepository annotatorRepository;
 
 	@Override
+	@Transactional
 	public Result save(Annotator annotator) {
 
 		List<AnnotatorRanges> rangesList = (List<AnnotatorRanges>) annotator.getRanges();
@@ -36,6 +37,13 @@ public class AnnotatorServiceImpl implements IAnnotatorService {
 			if(ann != null){
 				Map<String,String> idMap = new HashMap<>();
 				idMap.put("id",annotator.getAnnotatorId());
+				/**
+				 *  Delete because the annotatorId is empty when
+				 * updating the AnnotatorRanges table,
+				 * the data is useless data at this time.
+				 * */
+				annotatorRangesrepository.deleteByAnnotatorId(null);
+
 				return new Result(ResultEnum.INSERT_SUCCESS,idMap);
 			}else{
 				return new Result(ResultEnum.INSERT_DEFEAT);
