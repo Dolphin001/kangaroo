@@ -13,6 +13,8 @@ public enum ResultEnum {
     INSERT_SUCCESS(true,"Add comment success!"),
     INSERT_DEFEAT(false,"Add comment failed!"),
     ANNOTATOR_RANGES_ERROR(false,"Please re-add comments!"),
+    UPDATE_DEFEAT(false,"Update failed, please re-edit comments!"),
+    INIT_PAGE(true,"Initialization"),
     SEARCH_ANNOTATION(true,"Search annotation!");
 
     private boolean isOk;

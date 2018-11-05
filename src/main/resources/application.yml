@@ -6,17 +6,21 @@ spring:
       enabled: true
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://47.75.243.232:3306/annotator?useUnicode=true&characterEncoding=utf8
+    url: jdbc:mysql://localhost:3306/annotator?useUnicode=true&characterEncoding=utf8
     username: root
-    password: bobo201308@
+    password: root
   jpa:
     database-platform: org.hibernate.dialect.MySQL5Dialect
-#    hibernate:
-#      ddl-auto: create
+    hibernate:
+      ddl-auto: create
     show-sql: true
   mvc:
     static-path-pattern: /**
   resources:
     static-locations: classpath:/static/,classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
 #spring.jpa.database-platform=
+kangaroo:
+  name: Annotator API
+  version: 1.0.0
+  author: Whaleson
 
